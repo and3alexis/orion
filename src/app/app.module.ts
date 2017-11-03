@@ -7,7 +7,14 @@ import { HeroServiceService } from './hero-service.service';
 import { HeroesComponent } from './heroes/heroes.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AppRoutingModule }     from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from "@angular/http";
+import { PqrsComponent } from './pqrs/pqrs.component';
+import { PqrsService } from './pqrs.service';
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputTextModule, ButtonModule, DataTableModule, DialogModule }  from 'primeng/primeng';
 
 
 @NgModule({
@@ -15,14 +22,21 @@ import { AppRoutingModule }     from './app-routing.module';
     AppComponent,
     HeroDetailComponent,
     HeroesComponent,
-    DashboardComponent
+    DashboardComponent,
+    PqrsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpModule,
+    AngularFontAwesomeModule,
+    BrowserAnimationsModule,
+    DataTableModule,
+    ButtonModule
   ],
-  providers: [HeroServiceService],
+  providers: [HeroServiceService, PqrsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
