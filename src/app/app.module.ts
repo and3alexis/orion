@@ -14,7 +14,10 @@ import { PqrsComponent } from './pqrs/pqrs.component';
 import { PqrsService } from './pqrs.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputTextModule, ButtonModule, DataTableModule, DialogModule }  from 'primeng/primeng';
+import { InputTextModule, ButtonModule, DataTableModule, DialogModule, MultiSelectModule } from 'primeng/primeng';
+import { BehavioursComponent } from './behaviours/behaviours.component';
+import { BehavioursService } from './behaviours.service';
+import { BehaviourComponent } from './behaviour/behaviour.component';
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { InputTextModule, ButtonModule, DataTableModule, DialogModule }  from 'p
     HeroDetailComponent,
     HeroesComponent,
     DashboardComponent,
-    PqrsComponent
+    PqrsComponent,
+    BehavioursComponent,
+    BehaviourComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +39,10 @@ import { InputTextModule, ButtonModule, DataTableModule, DialogModule }  from 'p
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     DataTableModule,
-    ButtonModule
+    ButtonModule,
+    MultiSelectModule
   ],
-  providers: [HeroServiceService, PqrsService],
+  providers: [HeroServiceService, PqrsService, BehavioursService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

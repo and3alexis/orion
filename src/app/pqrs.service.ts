@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
-import {PQR} from './dto/pqr';
-import {Result} from './dto/result';
+import { PQR } from './dto/pqr';
+import { Result } from './dto/result';
 
 @Injectable()
 export class PqrsService {
@@ -18,9 +18,19 @@ export class PqrsService {
       .catch(this.handleErrorObservable);
   }
 
-  private extractData(res: Response){
+  private extractData(res: Response) {
+    var pqrs: PQR[] = [];
     let body = res.json();
-    return body.content.pqrCollection;
+    for (let result of body.content.pqrCollection) {
+      var pqr = new PQR();
+      pqr.account = result.account;
+      pqr.accountId = result.accountId;
+      pqr.area = result.area;
+      pqr.uneEstadoSIC = result.uneEstadoSIC;
+      pqrs.push(pqr);
+    }
+
+    return pqrs;
   }
   private handleErrorObservable(error: Response | any) {
     console.error(error.message || error);

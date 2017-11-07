@@ -1,6 +1,39 @@
 export class PQR {
   account: string;
   accountId: string;
-  
-
+  area: string;
+  closedDate: string;
+  commitTime: string;
+  contactEmail: string;
+  contactFirstName: string;
+  contactFullName: string;
+  contactLastName: string;
+  description: string;
+  iNSProduct: null;
+  openedDate: string;
+  originSystem: string;
+  parentSRNumber: null;
+  product: string;
+  productId: string;
+  subArea: string;
+  subStatus: null;
+  status: string;
+  srNumber: null;
+  srRootcause: string;
+  symptomCode: string;
+  ticketType: string;
+  type: string;
+  uneDUNSNumber: string;
+  uneEstadoSIC: string;
+  uneTipoDocumentoCuenta: string;
+  uneEstadoCUN: string;
+  uneFechaRadicado: null;
+  uneFechadeenvioSIC: null;
+  uneFechaAnulacionCUN: null;
+  uneEnviadoSuper: string;
+  uneCUN: string;
+  uneFechaRespuesta: null;
+  uneCUNPadre: null;
+  uneNrooficioSIC: string;
+  uneCodigoCierre: string;
 }

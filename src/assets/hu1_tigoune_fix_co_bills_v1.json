@@ -1,0 +1,1084 @@
+{
+  "userHistoryCollection": [
+    {
+      "code": "HU1",
+      "title": "Consultar facturas vigentes por documento y tipo documento",
+      "template": {
+        "yoComo": "Usuario del portal de autogestion TBO con contratos activos con tigoune",
+        "deseo": "Consultar información general de facturas vigentes por documento y tipo de documento del cliente.",
+        "para": "Conocer oportunamente el estado de cuenta con tigoune."
+      },
+      "note": "Los datos que se muestran son: Dirección, valor de la factura, Nro de contrato, referente de pago, Fecha de factura (Reemplaza el periodo facturado), fecha límite de pago, estado de la factura, estado pago.",
+      "filename": "hu1_tigoune_fix_co_bills_v1"
+    }
+  ],
+  "gherkinCollection": [
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0001",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "BLU"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por documento y tipo de documento",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=160152052&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 200, *(###)\n  \"code\": 0, *(Alfanumerico)\n  \"userMessage\": \"OK\", *(Alfanumerico)\n  \"content\":    {\n     \"identificationType\": null, *(Alfanumerico)\n     \"identification\": \"160152052\", *(############)\n     \"organization\": {\"name\": \"WILLIAM RAMIREZ\" *(Alfanumerico)},\n     \"customerAccountsCollection\": [      {\n        \"accountId\": \"13706067\", *(############)\n        \"localAddress\":          {\n           \"address\": \"KR 12 # 50 - 01\", *(Alfanumerico)\n           \"geographicPlace\":             {\n              \"country\": \"CO\", *(Alfanumerico)\n              \"city\": \"CALI\" *(Alfanumerico)\n           }\n        },\n        \"customerAccountsCharacteristicsValuesCollection\": [         {\n           \"cycle\": 27, *(############)\n           \"deliveryMethod\": \"Física\" *(Alfanumerico)\n        }],\n        \"customerBillCollection\": [         {\n           \"billNo\": \"900573745-26\", *(Alfanumerico)\n           \"billDate\": \"15/07/2017\", *(dd/MM/yyyy)\n           \"billAmount\": \"147610\", *(############)\n           \"paymentDueDate\": \"15/07/2017\", *(dd/MM/yyyy)\n           \"billClaimStatus\": \"Ajustada\", *(Alfanumerico, ej: Normal, Ajustada, Negociada, Financiada)\n           \"billStatus\": true, *(Boolean)\n           \"billingSystem\": \"OPENFLEX\", *(Alfanumerico)\n           \"referencePayment\": \"900573745-26\", *(Alfanumerico)\n           \"localAddress\":             {\n              \"address\": \"KR 12 # 50 - 01\", *(Alfanumerico)\n              \"geographicPlace\":                {\n                 \"country\": \"CO\", *(Alfanumerico)\n                 \"city\": \"CALI\" *(Alfanumerico)\n              }\n           }\n        }]\n     }]\n  },\n  \"technicalMessage\": null *(Alfanumerico)\n} \n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0002",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "RED"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Factura pagada",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consutar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=160152052&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el valor \"true\" en el atributo \"billStatus\"",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n   \"status\": 200,\n   \"code\": 0,\n   \"userMessage\": \"OK\",\n   \"content\":    {\n      \"identificationType\": null,\n      \"identification\": \"16769459\",\n      \"organization\": {\"name\": \"CALDERON OSPINA MAURICIO\"},\n      \"customerAccountsCollection\":       [\n                  {\n            \"accountId\": \"12011383\",\n            \"localAddress\":             {\n               \"address\": \"CL 3 CR 43 -48\",\n               \"geographicPlace\":                {\n                  \"country\": \"CO\",\n                  \"city\": \"CALI\"\n               }\n            },\n            \"customerAccountsCharacteristicsValuesCollection\": [            {\n               \"cycle\": 29,\n               \"deliveryMethod\": \"Física\"\n            }],\n            \"customerBillCollection\": [            {\n               \"billNo\": \"900573750-24\",\n               \"billDate\": \"15/07/2017\",\n               \"billAmount\": \"512168\",\n               \"paymentDueDate\": \"15/07/2017\",\n               \"billClaimStatus\": \"Ajustada\",\n               \"billStatus\": true,\n               \"billingSystem\": \"OPENFLEX\",\n               \"referencePayment\": \"900573750-24\",\n               \"localAddress\":                {\n                  \"address\": \"CL 3 CR 43 -48\",\n                  \"geographicPlace\":                   {\n                     \"country\": \"CO\",\n                     \"city\": \"CALI\"\n                  }\n               }\n            }]\n         }\n      ]\n   },\n   \"technicalMessage\": null\n}",
+            "type": [
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0003",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Factura no pagada",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=16769459&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el valor \"false\" en el atributo \"billStatus\"",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n   \"status\": 200,\n   \"code\": 0,\n   \"userMessage\": \"OK\",\n   \"content\":    {\n      \"identificationType\": null,\n      \"identification\": \"16769459\",\n      \"organization\": {\"name\": \"CALDERON OSPINA MAURICIO\"},\n      \"customerAccountsCollection\":       [\n                  {\n            \"accountId\": \"12011382\",\n            \"localAddress\":             {\n               \"address\": \"CL 3 CR 43 -48\",\n               \"geographicPlace\":                {\n                  \"country\": \"CO\",\n                  \"city\": \"CALI\"\n               }\n            },\n            \"customerAccountsCharacteristicsValuesCollection\": [            {\n               \"cycle\": 29,\n               \"deliveryMethod\": \"Física\"\n            }],\n            \"customerBillCollection\": [            {\n               \"billNo\": \"900573717-38\",\n               \"billDate\": \"15/07/2017\",\n               \"billAmount\": \"512168\",\n               \"paymentDueDate\": \"15/07/2017\",\n               \"billClaimStatus\": \"Ajustada\",\n               \"billStatus\": false,\n               \"billingSystem\": \"OPENFLEX\",\n               \"referencePayment\": \"900573717-38\",\n               \"localAddress\":                {\n                  \"address\": \"CL 3 CR 43 -48\",\n                  \"geographicPlace\":                   {\n                     \"country\": \"CO\",\n                     \"city\": \"CALI\"\n                  }\n               }\n            }]\n         }\n      ]\n   },\n   \"technicalMessage\": null\n}",
+            "type": [
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0004",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "BLA"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Factura estado Normal",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8357339&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el valor \"Normal\" en el atributo \"billClaimStatus\"",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n   \"status\": 200,\n   \"code\": 0,\n   \"userMessage\": \"OK\",\n   \"content\":    {\n      \"identificationType\": null,\n      \"identification\": \"8357339\",\n      \"organization\": {\"name\": \"Arroyave Quintero Cristian Alberto\"},\n      \"customerAccountsCollection\": [      {\n         \"accountId\": \"13598593\",\n         \"localAddress\":          {\n            \"address\": \"CR 42 D CL 45 C SUR -124 (INTERIOR 405 )\",\n            \"geographicPlace\":             {\n               \"country\": \"CO\",\n               \"city\": \"Envigado\"\n            }\n         },\n         \"customerAccountsCharacteristicsValuesCollection\": [         {\n            \"cycle\": 17,\n            \"deliveryMethod\": \"Física\"\n         }],\n         \"customerBillCollection\": [         {\n            \"billNo\": \"900371098-45\",\n            \"billDate\": \"29/07/2016\",\n            \"billAmount\": \"398933\",\n            \"paymentDueDate\": \"29/07/2016\",\n            \"billClaimStatus\": \"Normal\",\n            \"billStatus\": false,\n            \"billingSystem\": \"OPENFLEX\",\n            \"referencePayment\": \"900371098-45\",\n            \"localAddress\":             {\n               \"address\": \"CR 42 D CL 45 C SUR -124 (INTERIOR 405 )\",\n               \"geographicPlace\":                {\n                  \"country\": \"CO\",\n                  \"city\": \"Envigado\"\n               }\n            }\n         }]\n      }]\n   },\n   \"technicalMessage\": null\n}",
+            "type": [
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0005",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "YEL"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Factura estado ajustada",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=16769459&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el valor \"Ajustada\" en el atributo \"billClaimStatus\"",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n   \"status\": 200,\n   \"code\": 0,\n   \"userMessage\": \"OK\",\n   \"content\":    {\n      \"identificationType\": null,\n      \"identification\": \"16769459\",\n      \"organization\": {\"name\": \"CALDERON OSPINA MAURICIO\"},\n      \"customerAccountsCollection\":       [\n                  {\n            \"accountId\": \"12011382\",\n            \"localAddress\":             {\n               \"address\": \"CL 3 CR 43 -48\",\n               \"geographicPlace\":                {\n                  \"country\": \"CO\",\n                  \"city\": \"CALI\"\n               }\n            },\n            \"customerAccountsCharacteristicsValuesCollection\": [            {\n               \"cycle\": 29,\n               \"deliveryMethod\": \"Física\"\n            }],\n            \"customerBillCollection\": [            {\n               \"billNo\": \"900573717-38\",\n               \"billDate\": \"15/07/2017\",\n               \"billAmount\": \"512168\",\n               \"paymentDueDate\": \"15/07/2017\",\n               \"billClaimStatus\": \"Ajustada\",\n               \"billStatus\": false,\n               \"billingSystem\": \"OPENFLEX\",\n               \"referencePayment\": \"900573717-38\",\n               \"localAddress\":                {\n                  \"address\": \"CL 3 CR 43 -48\",\n                  \"geographicPlace\":                   {\n                     \"country\": \"CO\",\n                     \"city\": \"CALI\"\n                  }\n               }\n            }]\n         }\n      ]\n   },\n   \"technicalMessage\": null\n}",
+            "type": [
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0006",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Factura estado negociada",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=3556495&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el valor \"Negociada\" en el atributo \"billClaimStatus\"",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n   \"status\": 200,\n   \"code\": 0,\n   \"userMessage\": \"OK\",\n   \"content\":    {\n      \"identificationType\": null,\n      \"identification\": \"3556495\",\n      \"organization\": {\"name\": \"GARCIA POSADA ARIEL DE JESUS\"},\n      \"customerAccountsCollection\": [      {\n         \"accountId\": \"12132125\",\n         \"localAddress\":          {\n            \"address\": \"CR 43 A CL 109 -5\",\n            \"geographicPlace\":             {\n               \"country\": \"CO\",\n               \"city\": \"MEDELLÍN\"\n            }\n         },\n         \"customerAccountsCharacteristicsValuesCollection\": [         {\n            \"cycle\": 15,\n            \"deliveryMethod\": \"Física\"\n         }],\n         \"customerBillCollection\": [         {\n            \"billNo\": \"860964861-43\",\n            \"billDate\": \"24/12/2014\",\n            \"billAmount\": \"68184\",\n            \"paymentDueDate\": \"24/12/2014\",\n            \"billClaimStatus\": \"Negociada\",\n            \"billStatus\": true,\n            \"billingSystem\": \"OPENFLEX\",\n            \"referencePayment\": \"860964861-43\",\n            \"localAddress\":             {\n               \"address\": \"CR 43 A CL 109 -5\",\n               \"geographicPlace\":                {\n                  \"country\": \"CO\",\n                  \"city\": \"MEDELLÍN\"\n               }\n            }\n         }]\n      }]\n   },\n   \"technicalMessage\": null\n}",
+            "type": [
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0007",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Factura estado financiada",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=71679297&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el valor \"Financiada\" en el atributo \"billClaimStatus\"",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n   \"status\": 200,\n   \"code\": 0,\n   \"userMessage\": \"OK\",\n   \"content\":    {\n      \"identificationType\": null,\n      \"identification\": \"71679297\",\n      \"organization\": {\"name\": \"GAVIRIA GRANDA EMIRO DE JESUS\"},\n      \"customerAccountsCollection\": [      {\n         \"accountId\": \"11683977\",\n         \"localAddress\":          {\n            \"address\": \"CR 43 CL 108 -64 (INTERIOR 106 )\",\n            \"geographicPlace\":             {\n               \"country\": \"CO\",\n               \"city\": \"MEDELLÍN\"\n            }\n         },\n         \"customerAccountsCharacteristicsValuesCollection\": [         {\n            \"cycle\": 15,\n            \"deliveryMethod\": \"Física\"\n         }],\n         \"customerBillCollection\": [         {\n            \"billNo\": \"860963900-70\",\n            \"billDate\": \"24/12/2014\",\n            \"billAmount\": \"30958\",\n            \"paymentDueDate\": \"24/12/2014\",\n            \"billClaimStatus\": \"Financiada\",\n            \"billStatus\": false,\n            \"billingSystem\": \"OPENFLEX\",\n            \"referencePayment\": \"860963900-70\",\n            \"localAddress\":             {\n               \"address\": \"CR 43 CL 108 -64 (INTERIOR 106 )\",\n               \"geographicPlace\":                {\n                  \"country\": \"CO\",\n                  \"city\": \"MEDELLÍN\"\n               }\n            }\n         }]\n      }]\n   },\n   \"technicalMessage\": null\n}",
+            "type": [
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0008",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "No existe el documento",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=1601520529&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 200,\n  \"code\": 0,\n  \"userMessage\": \"No se encontraron datos en la consulta.\",\n  \"content\": [],\n  \"technicalMessage\": null\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0009",
+        "status": {
+          "http": "431",
+          "code": "755"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Tipo de documento requerido",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 755,\n  \"userMessage\": \"El parametro <identificationType> es requerido\",\n  \"content\": null,\n  \"technicalMessage\": \"El parametro <identificationType> es requerido\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0010",
+        "status": {
+          "http": "431",
+          "code": "757"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Documento requerido",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 757,\n  \"userMessage\": \"El parametro <identification> es requerido\",\n  \"content\": null,\n  \"technicalMessage\": \"El parametro <identification> es requerido\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0011",
+        "status": {
+          "http": "431",
+          "code": "757"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Documento no válido",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 757,\n  \"userMessage\": \"Verificar los datos de consulta\",\n  \"content\": null,\n  \"technicalMessage\": \"Verificar los datos de consulta\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0012",
+        "status": {
+          "http": "431",
+          "code": "756"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Tipo de documento mayor de 3 caracteres",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad  para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nitt&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 756,\n  \"userMessage\": \"El valor enviado en <identificationType> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor enviado en <identificationType> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0013",
+        "status": {
+          "http": "431",
+          "code": "758"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Documento mayor de 10 caracteres para tipo de documento nit",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=89090393881&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 758,\n  \"userMessage\": \"El valor enviado en <identification> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor enviado en <identification> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0013-01",
+        "status": {
+          "http": "431",
+          "code": "758"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Documento mayor de 10 caracteres para tipo de documento cc",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=89090393881&identificationType=cc&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 758,\n  \"userMessage\": \"El valor enviado en <identification> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor enviado en <identification> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0013-02",
+        "status": {
+          "http": "431",
+          "code": "758"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Documento mayor de 10 caracteres para tipo de documento ce",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=89090393881&identificationType=ce&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 758,\n  \"userMessage\": \"El valor enviado en <identification> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor enviado en <identification> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0013-03",
+        "status": {
+          "http": "431",
+          "code": "758"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Documento mayor de 10 caracteres para tipo de documento ne",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=89090393881&identificationType=ne&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 758,\n  \"userMessage\": \"El valor enviado en <identification> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor enviado en <identification> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0014",
+        "status": {
+          "http": "431",
+          "code": "756"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Tipo de documento incorrecto",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=hu&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n   \"status\": 431,\n   \"code\": 756,\n   \"userMessage\": \"El valor enviado en <identificationType> es incorrecto\", *(tipos de documento permitidos: \"cc\", \"ce\", \"nit\" o \"ne\")\n   \"content\": null,\n   \"technicalMessage\": \"El valor enviado en <identificationType> es incorrecto\"\n}",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0014-01",
+        "status": {
+          "http": "431",
+          "code": "756"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Tipo de documento con caracteres especiales",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=@@&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n   \"status\": 431,\n   \"code\": 756,\n   \"userMessage\": \"El valor enviado en <identificationType> es incorrecto\", *(tipos de documento permitidos: \"cc\", \"ce\", \"nit\" o \"ne\")\n   \"content\": null,\n   \"technicalMessage\": \"El valor enviado en <identificationType> es incorrecto\"\n}",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0015",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Documento con caracteres especiales",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909@39388&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 200,\n  \"code\": 0,\n  \"userMessage\": \"No se encontraron datos en la consulta.\",\n  \"content\": [],\n  \"technicalMessage\": null\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0016",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=1&numReg=2&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 200,\n  \"code\": 0,\n  \"userMessage\": \"OK\",\n  \"content\": {\n    \"identificationType\": null,\n    \"identification\": \"8909039388\",\n    \"organization\": {\n      \"name\": \"BANCOLOMBIA S.A\"\n    },\n    \"customerAccountsCollection\": [\n      {\n        \"accountId\": \"751413\",\n        \"localAddress\": {\n          \"address\": \"CR 66 CL 49 -1\",\n          \"geographicPlace\": {\n            \"country\": \"CO\",\n            \"city\": \"MEDELLÍN\"\n          }\n        },\n        \"customerAccountsCharacteristicsValuesCollection\": [\n          {\n            \"cycle\": 8,\n            \"deliveryMethod\": \"Física\"\n          }\n        ],\n        \"customerBillCollection\": [\n          {\n            \"billNo\": \"914470419-52\",\n            \"billDate\": \"1/04/2017\",\n            \"billAmount\": \"63170\",\n            \"paymentDueDate\": \"12/04/2017\",\n            \"billClaimStatus\": \"Normal\",\n            \"billStatus\": false,\n            \"billingSystem\": \"OPENFLEX\",\n            \"referencePayment\": \"914470419-52\",\n            \"localAddress\": {\n              \"address\": \"CR 66 CL 49 -1\",\n              \"geographicPlace\": {\n                \"country\": \"CO\",\n                \"city\": \"MEDELLÍN\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"accountId\": \"11806\",\n        \"localAddress\": {\n          \"address\": \"CR 52 CL 50 -20 (INTERIOR 1 )\",\n          \"geographicPlace\": {\n            \"country\": \"CO\",\n            \"city\": \"MEDELLÍN\"\n          }\n        },\n        \"customerAccountsCharacteristicsValuesCollection\": [\n          {\n            \"cycle\": 36,\n            \"deliveryMethod\": \"Física\"\n          }\n        ],\n        \"customerBillCollection\": [\n          {\n            \"billNo\": \"913217441-13\",\n            \"billDate\": \"1/03/2017\",\n            \"billAmount\": \"23205\",\n            \"paymentDueDate\": \"23/03/2017\",\n            \"billClaimStatus\": \"Normal\",\n            \"billStatus\": false,\n            \"billingSystem\": \"OPENFLEX\",\n            \"referencePayment\": \"913217441-13\",\n            \"localAddress\": {\n              \"address\": \"CR 52 CL 50 -20 (INTERIOR 1 )\",\n              \"geographicPlace\": {\n                \"country\": \"CO\",\n                \"city\": \"MEDELLÍN\"\n              }\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"technicalMessage\": null\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0017",
+        "status": {
+          "http": "431",
+          "code": "754"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación sin número de registros",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909@39388&identificationType=nit&regIni=1&numReg=&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 754,\n  \"userMessage\": \"Falta ingresar <numReg>\",\n  \"content\": null,\n  \"technicalMessage\": \"Falta ingresar <numReg>\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0018",
+        "status": {
+          "http": "431",
+          "code": "752"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación sin registro inicial",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=&numReg=2&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 752,\n  \"userMessage\": \"Falta ingresar <regIni>\",\n  \"content\": null,\n  \"technicalMessage\": \"Falta ingresar <regIni>\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0019",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación sin registro inicial y sin número de registros",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=16769459&identificationType=nit&regIni=&numReg=&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 200,\n  \"code\": 0,\n  \"userMessage\": \"OK\",\n  \"content\": {\n    \"identificationType\": null,\n    \"identification\": \"16769459\",\n    \"organization\": {\n      \"name\": \"CALDERON OSPINA MAURICIO\"\n    },\n    \"customerAccountsCollection\": [\n      {\n        \"accountId\": \"12011382\",\n        \"localAddress\": {\n          \"address\": \"CL 3 CR 43 -48\",\n          \"geographicPlace\": {\n            \"country\": \"CO\",\n            \"city\": \"CALI\"\n          }\n        },\n        \"customerAccountsCharacteristicsValuesCollection\": [\n          {\n            \"cycle\": 29,\n            \"deliveryMethod\": \"Física\"\n          }\n        ],\n        \"customerBillCollection\": [\n          {\n            \"billNo\": \"900573717-38\",\n            \"billDate\": \"15/07/2017\",\n            \"billAmount\": \"512168\",\n            \"paymentDueDate\": \"15/07/2017\",\n            \"billClaimStatus\": \"Ajustada\",\n            \"billStatus\": false,\n            \"billingSystem\": \"OPENFLEX\",\n            \"referencePayment\": \"900573717-38\",\n            \"localAddress\": {\n              \"address\": \"CL 3 CR 43 -48\",\n              \"geographicPlace\": {\n                \"country\": \"CO\",\n                \"city\": \"CALI\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"accountId\": \"12011383\",\n        \"localAddress\": {\n          \"address\": \"CL 3 CR 43 -48\",\n          \"geographicPlace\": {\n            \"country\": \"CO\",\n            \"city\": \"CALI\"\n          }\n        },\n        \"customerAccountsCharacteristicsValuesCollection\": [\n          {\n            \"cycle\": 29,\n            \"deliveryMethod\": \"Física\"\n          }\n        ],\n        \"customerBillCollection\": [\n          {\n            \"billNo\": \"900573750-24\",\n            \"billDate\": \"15/07/2017\",\n            \"billAmount\": \"512168\",\n            \"paymentDueDate\": \"15/07/2017\",\n            \"billClaimStatus\": \"Ajustada\",\n            \"billStatus\": true,\n            \"billingSystem\": \"OPENFLEX\",\n            \"referencePayment\": \"900573750-24\",\n            \"localAddress\": {\n              \"address\": \"CL 3 CR 43 -48\",\n              \"geographicPlace\": {\n                \"country\": \"CO\",\n                \"city\": \"CALI\"\n              }\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"technicalMessage\": null\n}\n\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0020",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "TM"
+      },
+      "gherkinSintax": {
+        "scenario": "Cliente que contenga hasta 10 contratos en menos de 1 segundo",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=34556745&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder en menos de 1000 ms",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": []
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0021",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "TM"
+      },
+      "gherkinSintax": {
+        "scenario": "Cliente que contenga hasta 50 contratos en menos de 5 segundos",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=1&numReg=50&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder en menos de 5000 ms",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": []
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0022",
+        "status": {
+          "http": "432",
+          "code": "700"
+        },
+        "behaviourStatus": {
+          "color": "ORA"
+        },
+        "emotion": "SD"
+      },
+      "gherkinSintax": {
+        "scenario": "Servicio no disponible",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 432,\n  \"code\": 700,\n  \"userMessage\": \"El servicio no esta disponible en este momento\",\n  \"content\": null,\n  \"technicalMessage\": \"setProperty must be overridden by all subclasses of SOAPMessage\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0023",
+        "status": {
+          "http": "431",
+          "code": "751"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación con registro inicial negativo",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=cc&regIni=-1&numReg=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 751,\n  \"userMessage\": \"El valor ingresado en el campo <regIni> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor ingresado en el campo <regIni> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0023-01",
+        "status": {
+          "http": "431",
+          "code": "751"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación con registro inicial igual a cero",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=0&numReg=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 751,\n  \"userMessage\": \"El valor ingresado en el campo <regIni> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor ingresado en el campo <regIni> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0024",
+        "status": {
+          "http": "431",
+          "code": "751"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación con registro inicial decimal",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=1.1&numReg=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 751,\n  \"userMessage\": \"El valor ingresado en el campo <regIni> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor ingresado en el campo <regIni> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0025",
+        "status": {
+          "http": "431",
+          "code": "751"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación con registro inicial alfanumérico",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=aa1&numReg=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 751,\n  \"userMessage\": \"El valor ingresado en el campo <regIni> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor ingresado en el campo <regIni> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0026",
+        "status": {
+          "http": "431",
+          "code": "753"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación con número de registros negativo",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=1&numReg=-1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 753,\n  \"userMessage\": \"El valor ingresado en el campo <numReg> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor ingresado en el campo <numReg> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0027",
+        "status": {
+          "http": "431",
+          "code": "753"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación con número de registros decimal",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=1&numReg=-1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 753,\n  \"userMessage\": \"El valor ingresado en el campo <numReg> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor ingresado en el campo <numReg> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0028",
+        "status": {
+          "http": "431",
+          "code": "753"
+        },
+        "behaviourStatus": {
+          "color": "GRE"
+        },
+        "emotion": "UN"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por paginación con número de registros alfanumérico",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1 http://unevm-dmap.epmtelco.com.co:8080/tigoune_fix_co_bills_v1/v1/accounts?identification=8909039388&identificationType=nit&regIni=1&numReg=aa1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRvZ2VzdGlvbkIyQiIsImF1ZCI6Imh0dHA6XC9cL3BnZHIudW5lLm5ldC5jbyIsImlhdCI6MTUwNzY2ODkyNywibmJmIjoxNTA3NjY4OTI3fQ.jLZSaVgAb_FqYDOEI5VcfihErzJdEXbHOWNgXKaOLUI.YXBpZ2VlQUIyQg==",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\n  \"status\": 431,\n  \"code\": 753,\n  \"userMessage\": \"El valor ingresado en el campo <numReg> es incorrecto\",\n  \"content\": null,\n  \"technicalMessage\": \"El valor ingresado en el campo <numReg> es incorrecto\"\n}\n",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
