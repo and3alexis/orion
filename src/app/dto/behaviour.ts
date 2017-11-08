@@ -1,5 +1,7 @@
 export class Behaviour {
 
+  userHistories:string[];
+
   code: string;
 
   scenario: string;
@@ -8,14 +10,22 @@ export class Behaviour {
 
   color: string;
 
-  statusHttp:string;
+  statusHttp: string;
 
-  statusCode:string;
+  statusCode: string;
 
-  given:string;
+  given: string;
 
-  when:string;
+  givenParams: any[];
 
-  then:string;
+  when: string;
+
+  whenParams: any[];
+
+  then: string;
+
+  thenParams: any[];
+
+
 
 }

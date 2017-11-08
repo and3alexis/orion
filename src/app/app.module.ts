@@ -14,11 +14,15 @@ import { PqrsComponent } from './pqrs/pqrs.component';
 import { PqrsService } from './pqrs.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputTextModule, ButtonModule, DataTableModule, DialogModule, MultiSelectModule, OverlayPanelModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, DataTableModule, DialogModule, MultiSelectModule, OverlayPanelModule, AccordionModule } from 'primeng/primeng';
 import { BehavioursComponent } from './behaviours/behaviours.component';
 import { BehavioursService } from './behaviours.service';
 import { BehaviourComponent } from './behaviour/behaviour.component';
 import { EmotionComponent } from './emotion/emotion.component';
+import { ParamsComponent } from './params/params.component';
+import { ColorComponent } from './color/color.component';
+import { UserHistoriesComponent } from './user-histories/user-histories.component';
+import { UserHistoriesService } from './user-histories.service';
 
 
 @NgModule({
@@ -30,7 +34,10 @@ import { EmotionComponent } from './emotion/emotion.component';
     PqrsComponent,
     BehavioursComponent,
     BehaviourComponent,
-    EmotionComponent
+    EmotionComponent,
+    ParamsComponent,
+    ColorComponent,
+    UserHistoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +50,10 @@ import { EmotionComponent } from './emotion/emotion.component';
     DataTableModule,
     ButtonModule,
     MultiSelectModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    AccordionModule
   ],
-  providers: [HeroServiceService, PqrsService, BehavioursService],
+  providers: [BehavioursService, UserHistoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

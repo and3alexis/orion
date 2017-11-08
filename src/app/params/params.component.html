@@ -1,0 +1,7 @@
+<p-accordion>
+  <p-accordionTab *ngFor="let param of params; let i = index" header="{{param.description}}">
+    <span class="line-breaker">
+      {{param.value}}
+    </span>
+  </p-accordionTab>
+</p-accordion>

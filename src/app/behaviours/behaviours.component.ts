@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BehavioursService } from '../behaviours.service';
+import { UserHistoriesService } from '../user-histories.service';
 import { Behaviour } from '../dto/behaviour';
+import { UserHistory } from '../dto/userHistory';
 import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng/primeng';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -11,6 +14,10 @@ import { SelectItem } from 'primeng/primeng';
   styleUrls: ['./behaviours.component.css']
 })
 export class BehavioursComponent implements OnInit {
+  observableUserHistory: Observable<any>;
+
+  userHistory:UserHistory;
+
   observableBehaviours: Observable<any>;
 
   behaviours: Behaviour[];
@@ -21,7 +28,9 @@ export class BehavioursComponent implements OnInit {
 
   emotions: SelectItem[];
 
-  constructor(private behavioursService: BehavioursService) { }
+  constructor(private route: ActivatedRoute,
+    private behavioursService: BehavioursService,
+    private userHistoriesService: UserHistoriesService) { }
 
   ngOnInit() {
     this.colors = [];
@@ -38,32 +47,13 @@ export class BehavioursComponent implements OnInit {
     this.emotions.push({ label: 'SAD', value: 'SD' });
     this.emotions.push({ label: 'TIME', value: 'TM' });
 
+    this.route.paramMap
+      .switchMap((params: ParamMap) => this.behavioursService.getBehaviourByUserHistory(params.get('userHistory')))
+      .subscribe(behaviours => this.behaviours = behaviours);
 
-    this.observableBehaviours = this.behavioursService.getBehaviours();
-    this.observableBehaviours.subscribe(behaviours => this.behaviours = behaviours, error => this.errorMessage = <any>error);
+      this.route.paramMap
+        .switchMap((params: ParamMap) => this.userHistoriesService.getUserHistoryByCode(params.get('userHistory')))
+        .subscribe(userHistory => this.userHistory = userHistory);
   }
-
-  changeColor(value) {
-    if (value === 'GRE') {
-      return '#40FF00';
-    }
-    if (value === 'ORA') {
-      return '#FF8000';
-    }
-    if (value === 'RED') {
-      return '#FF0000';
-    }
-    if (value === 'BLA') {
-      return '#000000';
-    }
-    if (value === 'BLU') {
-      return '#00BFFF';
-    }
-    return '#FFFF00';
-  }
-
-
-
-  
 
 }

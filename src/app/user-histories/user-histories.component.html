@@ -1,0 +1,11 @@
+
+<div class="grid grid-pad">
+  <div *ngFor="let userHistory of userHistories" class="col-1-4">
+    <br/>
+    <div class="module hero">
+      <a routerLink="/userHistory/{{userHistory.code}}/behaviours">
+        <h4>{{userHistory.code}} "Yo como {{userHistory.templateYoComo}}, deseo {{userHistory.templateDeseo}}, para {{userHistory.templatePara}}"</h4>
+      </a>
+    </div>
+  </div>
+</div>
