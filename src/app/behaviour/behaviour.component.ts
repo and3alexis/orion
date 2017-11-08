@@ -16,7 +16,7 @@ export class BehaviourComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.behavioursService.getBehaviourByCode(+params.get('code')))
+      .switchMap((params: ParamMap) => this.behavioursService.getBehaviourByCode(params.get('code')))
       .subscribe(behaviour => this.behaviour = behaviour);
   }
 

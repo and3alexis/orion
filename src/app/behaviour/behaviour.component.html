@@ -1,3 +1,14 @@
-<p>
-  behaviour works!
-</p>
+<div *ngIf="behaviour">
+<p>Comportamiento {{behaviour.code}}</p>
+<div class="ui-g">
+    <div class="ui-g-3">Color: {{behaviour.color}}</div>
+    <div class="ui-g-3">Emotion: <behaviour-emotion [emotion]="behaviour.emotion"></behaviour-emotion></div>
+    <div class="ui-g-3">Status HTTP: {{behaviour.statusHttp}}</div>
+    <div class="ui-g-3">Status Code: {{behaviour.statusCode}}</div>
+</div>
+<p>Título: {{behaviour.scenario}}</p>
+<p>Dado que {{behaviour.given}}</p>
+<p>Cuando {{behaviour.when}}</p>
+<p>Entonces {{behaviour.then}}</p>
+
+</div>

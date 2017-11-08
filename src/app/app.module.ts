@@ -14,10 +14,11 @@ import { PqrsComponent } from './pqrs/pqrs.component';
 import { PqrsService } from './pqrs.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputTextModule, ButtonModule, DataTableModule, DialogModule, MultiSelectModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, DataTableModule, DialogModule, MultiSelectModule, OverlayPanelModule } from 'primeng/primeng';
 import { BehavioursComponent } from './behaviours/behaviours.component';
 import { BehavioursService } from './behaviours.service';
 import { BehaviourComponent } from './behaviour/behaviour.component';
+import { EmotionComponent } from './emotion/emotion.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { BehaviourComponent } from './behaviour/behaviour.component';
     DashboardComponent,
     PqrsComponent,
     BehavioursComponent,
-    BehaviourComponent
+    BehaviourComponent,
+    EmotionComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { BehaviourComponent } from './behaviour/behaviour.component';
     BrowserAnimationsModule,
     DataTableModule,
     ButtonModule,
-    MultiSelectModule
+    MultiSelectModule,
+    OverlayPanelModule
   ],
   providers: [HeroServiceService, PqrsService, BehavioursService],
   bootstrap: [AppComponent]

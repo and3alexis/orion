@@ -24,20 +24,7 @@
     </ng-template>
 
     <ng-template let-data="rowData" pTemplate="body">
-
-      <div *ngIf="data.emotion === 'HPPY'" style="text-align:center">
-        <img src="assets/happy.png" />
-      </div>
-      <div *ngIf="data.emotion === 'TM'" style="text-align:center">
-        <img src="assets/time.png" />
-      </div>
-      <div *ngIf="data.emotion === 'UN'" style="text-align:center">
-        <img src="assets/unexpected.png" />
-      </div>
-      <div *ngIf="data.emotion === 'SD'" style="text-align:center">
-        <img src="assets/sad.png" />
-      </div>
-
+      <behaviour-emotion [emotion]="data.emotion"></behaviour-emotion>
     </ng-template>
 
   </p-column>

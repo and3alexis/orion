@@ -8,4 +8,14 @@ export class Behaviour {
 
   color: string;
 
+  statusHttp:string;
+
+  statusCode:string;
+
+  given:string;
+
+  when:string;
+
+  then:string;
+
 }

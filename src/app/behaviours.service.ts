@@ -17,7 +17,12 @@ export class BehavioursService {
       .catch(this.handleErrorObservable);
   }
 
-  
+  getBehaviourByCode(code:string): Observable<any> {
+    return this.getBehaviours()
+      .map(data => data.find(data => data.code == code)).catch(this.handleErrorObservable);
+  }
+
+
 
   private extractData(res: Response) {
     var behaviours: Behaviour[] = [];
@@ -28,20 +33,11 @@ export class BehavioursService {
       behaviour.scenario = result.gherkinSintax.scenario;
       behaviour.emotion = result.header.emotion;
       behaviour.color = result.header.behaviourStatus.color;
-      behaviours.push(behaviour);
-    }
-    return behaviours;
-  }
-
-  private extractData1(res: Response, code:string) {
-    var behaviours: Behaviour[] = [];
-    let body = res.json();
-    for (let result of body.gherkinCollection) {
-      var behaviour = new Behaviour();
-      behaviour.code = result.header.code;
-      behaviour.scenario = result.gherkinSintax.scenario;
-      behaviour.emotion = result.header.emotion;
-      behaviour.color = result.header.behaviourStatus.color;
+      behaviour.given = result.gherkinSintax.given;
+      behaviour.statusCode = result.header.status.code;
+      behaviour.statusHttp = result.header.status.http;
+      behaviour.then = result.gherkinSintax.then;
+      behaviour.when = result.gherkinSintax.when;
       behaviours.push(behaviour);
     }
     return behaviours;
