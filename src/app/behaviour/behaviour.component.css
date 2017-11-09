@@ -1,19 +1,26 @@
-.centered{
-  text-align: center;
-}
-
-.color{
-  background-color: green;
-  width: 20px;
-  height: 100%;
-}
-
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 table, th, td {
-    border: 1px solid black;
+  border: 1px solid black;
 }
 
-tr { line-height: 5px; }
+
+.tableMargin {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.gherkin {
+  font-size: 1.3em;
+}
+
+.margin {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.alignVertically {
+    vertical-align: middle;
+}

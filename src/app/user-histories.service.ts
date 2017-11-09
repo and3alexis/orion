@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserHistoriesService {
 
-  JSONFile = 'assets/hu1_tigoune_fix_co_bills_v1.json';
+  JSONFile = 'assets/database.json';
 
   constructor(private http: Http) { }
 

@@ -1,27 +1,61 @@
 <div *ngIf="behaviour">
-  <h2><button pButton type="button" icon="fa-arrow-left" (click)="goBack()" iconPos="left"></button><b> {{behaviour.scenario}}</b></h2>
-  <table style="width:50%">
+  <h2>
+    <button pButton type="button" icon="fa-arrow-left" (click)="goBack()" iconPos="left"></button>
+     {{behaviour.scenario}}
+  </h2>
 
-  <tr>
-    <td rowspan="2" [ngStyle]="{'background-color': changeColor(behaviour.color)}" style="width:70px"></td>
-    <td><div class="centered"><h3><b>Emoción</b></h3></div></td>
-    <td><div class="centered"><h3><b>Status HTTP</b></h3></div></td>
-    <td><div class="centered"><h3><b>Status Code</b></h3></div></td>
-  </tr>
-  <tr>
-    <td><behaviour-emotion [emotion]="behaviour.emotion"></behaviour-emotion></td>
-    <td><div class="centered">{{behaviour.statusHttp}}</div></td>
-    <td><div class="centered">{{behaviour.statusCode}}</div></td>
-  </tr>
-</table>
+  <table style="width:600px;" class="tableMargin">
 
-<br/>
+    <tr>
+      <td rowspan="2" [ngStyle]="{'background-color': changeColor(behaviour.color)}" style="width:70px"></td>
+      <td>
+        <div class="centered">
+          <h3>Emoción</h3>
+        </div>
+      </td>
+      <td>
+        <div class="centered">
+          <h3>Status HTTP</h3>
+        </div>
+      </td>
+      <td>
+        <div class="centered">
+          <h3>Status Code</h3>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="horizontal">
+          <div class="vertical">
+            <behaviour-emotion [emotion]="behaviour.emotion"></behaviour-emotion>
+          </div>
+        </div>
+      </td>
+      <td class="alignVertically">
+        <div class="horizontal">
+          {{behaviour.statusHttp}}
+        </div>
+      </td>
+      <td class="alignVertically">
+        <div class="horizontal">
+          {{behaviour.statusCode}}
+        </div>
+      </td>
+    </tr>
+  </table>
 
+  <div class="margin gherkin"><span class="bold">Dado que</span> {{behaviour.given}}</div>
+  <div class="margin">
+    <behaviour-params [params]="behaviour.givenParams"></behaviour-params>
+  </div>
+  <div class="margin gherkin"><span class="bold">Cuando</span> {{behaviour.when}}</div>
+  <div class="margin">
+    <behaviour-params [params]="behaviour.whenParams"></behaviour-params>
+  </div>
+  <div class="margin gherkin"><span class="bold">Entonces</span> {{behaviour.then}}</div>
+  <div class="margin">
+    <behaviour-params [params]="behaviour.thenParams"></behaviour-params>
+  </div>
 
-  <p><span><b>Dado que</b></span> {{behaviour.given}}</p>
-  <behaviour-params [params]="behaviour.givenParams"></behaviour-params>
-  <div><span><b>Cuando</b></span> {{behaviour.when}}</div>
-  <behaviour-params [params]="behaviour.whenParams"></behaviour-params>
-  <p><span><b>Entonces</b></span> {{behaviour.then}}</p>
-  <behaviour-params [params]="behaviour.thenParams"></behaviour-params>
 </div>
