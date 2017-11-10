@@ -1,0 +1,40 @@
+<div *ngIf="userHistory">
+
+  <div style="margin:2em;">
+    <h2>"Yo como {{userHistory.templateYoComo}}, deseo {{userHistory.templateDeseo}}, para {{userHistory.templatePara}}"</h2>
+  </div>
+
+
+  <p-dataTable #dt [value]="behaviours" exportFilename="behaviours" [responsive]="true">
+    <p-column field="code" [style]="{'width': '230px'}" header="Código" [filter]="true" filterPlaceholder="Buscar" filterMatchMode="contains"></p-column>
+    <p-column field="scenario" header="Scenario" [filter]="true" filterPlaceholder="Buscar" filterMatchMode="contains">
+      <ng-template let-data="rowData" pTemplate="body">
+        <a routerLink="/behaviour/{{data.code}}" routerLinkActive="active">{{data.scenario}}</a>
+      </ng-template>
+
+    </p-column>
+    <p-column field="color" [style]="{'width': '80px'}" header="Color" [filter]="true" filterMatchMode="in">
+      <ng-template pTemplate="filter" let-col>
+        <p-multiSelect [options]="colors" defaultLabel="All" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
+      </ng-template>
+      <ng-template let-data="rowData" pTemplate="body">
+        <behaviour-color [color]="data.color"></behaviour-color>
+      </ng-template>
+    </p-column>
+    <p-column field="emotion" [style]="{'width': '80px'}" header="Emoción" [filter]="true" filterMatchMode="in">
+      <ng-template pTemplate="filter" let-col>
+        <p-multiSelect [options]="emotions" defaultLabel="All" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
+      </ng-template>
+
+      <ng-template let-data="rowData" pTemplate="body">
+        <div class="horizontal">
+          <div class="vertical">
+            <behaviour-emotion [emotion]="data.emotion"></behaviour-emotion>
+          </div>
+        </div>
+      </ng-template>
+
+    </p-column>
+    <p-footer></p-footer>
+  </p-dataTable>
+</div>

@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('orion App', () => {
+describe('orion-web App', () => {
   let page: AppPage;
 
   beforeEach(() => {

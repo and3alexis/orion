@@ -1,0 +1,50 @@
+{
+  "userHistoryCollection": [
+    {
+      "code": "HU1",
+      "title": "Consultar facturas vigentes por documento y tipo documento",
+      "template": {
+        "yoComo": "Usuario del portal de autogestion TBO con contratos activos con tigoune",
+        "deseo": "Consultar información general de facturas vigentes por documento y tipo de documento del cliente.",
+        "para": "Conocer oportunamente el estado de cuenta con tigoune."
+      },
+      "note": "Los datos que se muestran son: Dirección, valor de la factura, Nro de contrato, referente de pago, Fecha de factura (Reemplaza el periodo facturado), fecha límite de pago, estado de la factura, estado pago.",
+      "filename": "hu1_v1"
+    }
+  ],
+  "gherkinCollection": [
+    {
+      "userHistoryCollection": [
+        "HU1"
+      ],
+      "header": {
+        "code": "TUFCBV1-ABIAIT-0001",
+        "status": {
+          "http": "200",
+          "code": "0"
+        },
+        "behaviourStatus": {
+          "color": "BLU"
+        },
+        "emotion": "HPPY"
+      },
+      "gherkinSintax": {
+        "scenario": "Consultar facturas vigentes por documento y tipo de documento",
+        "given": "se requiere consultar las facturas",
+        "when": "se ejecute la capacidad para consultar las facturas de tigoune_fix_co_bills V1",
+        "then": "tigoune_fix_co_bills V1 al consultar las facturas debe responder con el siguiente JSON:",
+        "givenParams": [],
+        "whenParams": [],
+        "thenParams": [
+          {
+            "value": "{\"menu\": {\n  \"id\": \"file\",\n  \"value\": \"File\",\n  \"popup\": {\n    \"menuitem\": [\n      {\"value\": \"New\", \"onclick\": \"CreateNewDoc()\"},\n      {\"value\": \"Open\", \"onclick\": \"OpenDoc()\"},\n      {\"value\": \"Close\", \"onclick\": \"CloseDoc()\"}\n    ]\n  }\n}}",
+            "type": [
+              "STORY-JSON",
+              "DOC-JSON"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

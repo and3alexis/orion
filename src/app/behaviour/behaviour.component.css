@@ -1,0 +1,26 @@
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+
+.tableMargin {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.gherkin {
+  font-size: 1.3em;
+}
+
+.margin {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.alignVertically {
+    vertical-align: middle;
+}
