@@ -6,8 +6,14 @@
 
 
   <p-dataTable #dt [value]="behaviours" exportFilename="behaviours" [responsive]="true">
-    <p-column field="code" [style]="{'width': '230px'}" header="Código" [filter]="true" filterPlaceholder="Buscar" filterMatchMode="contains"></p-column>
-    <p-column field="scenario" header="Scenario" [filter]="true" filterPlaceholder="Buscar" filterMatchMode="contains">
+    <p-column field="code" [style]="{'width': '230px', 'vertical-align' : 'middle'}" header="Código" [filter]="true" filterPlaceholder="Buscar" filterMatchMode="contains">
+      <ng-template let-data="rowData" pTemplate="body">
+        <div class="horizontal">
+          {{data.code}}
+        </div>
+      </ng-template>
+    </p-column>
+    <p-column field="scenario" header="Escenario" [style]="{'vertical-align' : 'middle'}" [filter]="true" filterPlaceholder="Buscar" filterMatchMode="contains">
       <ng-template let-data="rowData" pTemplate="body">
         <a routerLink="/behaviour/{{data.code}}" routerLinkActive="active">{{data.scenario}}</a>
       </ng-template>
