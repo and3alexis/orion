@@ -9,13 +9,13 @@
     <p-column field="code" [style]="{'width': '230px', 'vertical-align' : 'middle'}" header="Código" [filter]="true" filterPlaceholder="Buscar" filterMatchMode="contains">
       <ng-template let-data="rowData" pTemplate="body">
         <div class="horizontal">
-          {{data.code}}
+          {{data?.code}}
         </div>
       </ng-template>
     </p-column>
     <p-column field="scenario" header="Escenario" [style]="{'vertical-align' : 'middle'}" [filter]="true" filterPlaceholder="Buscar" filterMatchMode="contains">
       <ng-template let-data="rowData" pTemplate="body">
-        <a routerLink="/behaviour/{{data.code}}" routerLinkActive="active">{{data.scenario}}</a>
+        <a routerLink="/behaviour/{{data?.code}}" routerLinkActive="active">{{data?.scenario}}</a>
       </ng-template>
 
     </p-column>
@@ -24,9 +24,21 @@
         <p-multiSelect [options]="colors" defaultLabel="All" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
       </ng-template>
       <ng-template let-data="rowData" pTemplate="body">
-        <behaviour-color [color]="data.color"></behaviour-color>
+        <behaviour-color [color]="data?.color"></behaviour-color>
       </ng-template>
     </p-column>
+
+    <p-column field="status" [style]="{'width': '80px', 'vertical-align' : 'middle'}" header="Estado">
+
+      <ng-template let-data="rowData" pTemplate="body">
+          <div class="horizontal">
+            {{data.statusHttp}} - {{data.statusCode}}
+          </div>
+      </ng-template>
+
+    </p-column>
+
+
     <p-column field="emotion" [style]="{'width': '80px'}" header="Emoción" [filter]="true" filterMatchMode="in">
       <ng-template pTemplate="filter" let-col>
         <p-multiSelect [options]="emotions" defaultLabel="All" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
@@ -35,12 +47,14 @@
       <ng-template let-data="rowData" pTemplate="body">
         <div class="horizontal">
           <div class="vertical">
-            <behaviour-emotion [emotion]="data.emotion"></behaviour-emotion>
+            <behaviour-emotion [emotion]="data?.emotion"></behaviour-emotion>
           </div>
         </div>
       </ng-template>
 
     </p-column>
+
+
     <p-footer></p-footer>
   </p-dataTable>
 </div>

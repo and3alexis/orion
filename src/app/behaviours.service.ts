@@ -19,12 +19,11 @@ export class BehavioursService {
   }
 
   getBehaviourByUserHistory(code: string): Observable<any> {
-    console.info(code);
-    var data1 = this.getBehaviours().map(item => item.map(function(item){
-      if(item.userHistories.find(item => item == code)){
-        return item;
-      }
-    })).catch(this.handleErrorObservable);
+    var data1 = this.getBehaviours().map(function(item){
+      return item.filter(function(item){
+        return item.userHistories.find(item => item === code);
+      });
+    }).catch(this.handleErrorObservable);
     return data1;
   }
 
